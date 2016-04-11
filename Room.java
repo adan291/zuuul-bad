@@ -20,6 +20,7 @@ public class Room
     public Room eastExit;
     public Room westExit;
     public Room southEastExit;
+    public Room northWestExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -41,7 +42,7 @@ public class Room
      * @param west The west exit.
      * @params southeast The west exit.
      */
-    public void setExits(Room norte, Room este, Room sur, Room oeste, Room suroeste) 
+    public void setExits(Room norte, Room este, Room sur, Room oeste, Room suroeste, Room noroeste) 
     {
         if(norte != null)
             northExit = norte;
@@ -53,33 +54,40 @@ public class Room
             westExit = oeste;
         if(suroeste != null)
             southEastExit = suroeste;
+            if(suroeste != null)
+            northWestExit = noroeste;
     }
     
     public Room getExit(String coordenada)
     {
         Room direccion = null;
-        if (coordenada == "norte")
+        if (coordenada.equals("norte"))
         {
             direccion = northExit;  
         }
-        else  if (coordenada == "este")
+        else  if (coordenada.equals("este"))
         {
             direccion = southExit;  
         }
-        else  if (coordenada == "sur")
+        else  if (coordenada.equals("sur"))
         {
             direccion = southExit;  
         }
-        else  if (coordenada == "oeste")
+        else  if (coordenada.equals("oeste"))
         {
             direccion = westExit;  
         }
-        else  if (coordenada == "suroeste")
+        else  if (coordenada.equals("suroeste"))
         {
             direccion = southEastExit;  
         }
+        else  if (coordenada.equals("noroeste"))
+        {
+            direccion = northWestExit;  
+        }
         return direccion;
     }
+   
 
     /**
      * @return The description of the room.

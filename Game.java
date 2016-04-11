@@ -47,13 +47,13 @@ public class Game
         princesa = new Room("Salvaste a la princesa");
 
         // initialise room exits
-        sala.setExits(null, armas, null, calabozo,null);
-        calabozo.setExits(null, null, null, null,null);
-        armas.setExits(comedor, null, null, null, null);
-        comedor.setExits(princesa, habitacionFlechas, null, foso, null);
-        foso.setExits(null, null, null, null, null);
-        habitacionFlechas.setExits(null, null, null, null, null);
-        princesa.setExits(null, null, null, null, habitacionFlechas);
+        sala.setExits(null, armas, null, calabozo,null,null);
+        calabozo.setExits(null, null, null, null,null,null);
+        armas.setExits(comedor, null, null, null, null,null);
+        comedor.setExits(princesa, habitacionFlechas, null, foso, null,null);
+        foso.setExits(null, null, null, null, null,null);
+        habitacionFlechas.setExits(null, null, null, null, null,null);
+        princesa.setExits(null, null, null, null, habitacionFlechas,null);
 
         currentRoom = sala;  // start game outside
     }
@@ -141,7 +141,7 @@ public class Game
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-     private void goRoom(Command command) 
+    private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
@@ -181,22 +181,24 @@ public class Game
         }
     }
 
-    private void printLocationInfo()
+      private void printLocationInfo()
     {
+        System.out.println(currentRoom.getDescription());
+        System.out.print("Exits: ");
         if(currentRoom.northExit != null) {
-            System.out.print("norte ");
+            System.out.print("north ");
         }
         if(currentRoom.eastExit != null) {
-            System.out.print("este ");
+            System.out.print("east ");
         }
         if(currentRoom.southExit != null) {
-            System.out.print("sur ");
+            System.out.print("south ");
         }
         if(currentRoom.westExit != null) {
-            System.out.print("oeste ");
+            System.out.print("west ");
         }
         if(currentRoom.southEastExit != null) {
-            System.out.print("suroeste ");
+            System.out.print("southEast ");
         }
     }
 }
