@@ -141,41 +141,25 @@ public class Game
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    private void goRoom(Command command) 
+     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
-            System.out.println("¿Que direccion quieres tomar?");
+            System.out.println("Go where?");
             return;
         }
 
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = null;
-        if(direction.equals("norte")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("este")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("sur")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("oeste")) {
-            nextRoom = currentRoom.westExit;
-        }
-        if(direction.equals("suroeste")) {
-            nextRoom = currentRoom.southEastExit;
-        }
+        Room nextRoom = currentRoom.getExit(direction);
+       
 
         if (nextRoom == null) {
-            System.out.println("En esa direccion no hay ninguna puerta");
+            System.out.println("No hay ninguna puerta en esa direccion");
         }
         else {
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getDescription());
-            System.out.print("Que direccion quieres tomar: ");
             printLocationInfo();
             System.out.println();
         }
